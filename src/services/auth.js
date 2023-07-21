@@ -13,9 +13,14 @@ export const signUpWithEmail = async (data) => {
   return result
 }
 
-export const updateProfile = async (data) => {
+export const updateProfile = async (id, full_name) => {
   try {
-    await supabase.from('profiles').upsert(data, { returning: 'minimal' })
+    await supabase.from('profiles').upsert({ 
+      user_id: id,
+       full_name: full_name
+      },{
+      returning: 'minimal'
+      })
   } catch (error) {
     console.error(error)
   }
@@ -50,17 +55,18 @@ export const getUserProfile = async () => {
     const user = supabase.auth.user()
 
     if (user) {
-      const { id, app_metadata, user_metadata } = user
+      const {app_metadata, user_metadata } = user
       if (app_metadata.provider === 'google') {
         const { full_name } = user_metadata
         return { username: full_name }
       }
 
       const { data, error, status } = await supabase
-        .from('profiles')
-        .select('id, full_name, updated_at')
-        .eq('id', id)
-        .single()
+      .from('profiles')
+      .select('*')
+      .eq('user_id', user.id)
+      .single();
+    
 
       if (error && status === 406) {
         throw new Error('An error has ocurred')

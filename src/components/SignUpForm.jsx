@@ -9,7 +9,6 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 
-import { supabase } from "../api/config";
 import useForm from "../hooks/useForm";
 import { signUpWithEmail, updateProfile } from "../services/auth";
 
@@ -29,18 +28,17 @@ const SingUpForm = () => {
       email: emailr,
       password: passwordr,
     };
+    try{
+      const registerUser = await signUpWithEmail(data);
 
-    const result = await signUpWithEmail(data);
-
-    if (result) {
-      const user = supabase.auth.user();
-
-      const data = {
-        id: user.id,
-        full_name: fullName,
-      };
-      await updateProfile(data);
+      if (registerUser){
+        await updateProfile(registerUser.user.id, fullName)
+      }
+      reset();
+    } catch (error){
+      console.log("Error al registrarse" ,error)
     }
+
   };
 
   return (
