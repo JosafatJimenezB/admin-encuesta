@@ -55,17 +55,18 @@ export const getUserProfile = async () => {
     const user = supabase.auth.user()
 
     if (user) {
-      const { id, app_metadata, user_metadata } = user
+      const {app_metadata, user_metadata } = user
       if (app_metadata.provider === 'google') {
         const { full_name } = user_metadata
         return { username: full_name }
       }
 
       const { data, error, status } = await supabase
-        .from('profiles')
-        .select('id, full_name, updated_at')
-        .eq('id', id)
-        .single()
+      .from('profiles')
+      .select('*')
+      .eq('user_id', user.id)
+      .single();
+    
 
       if (error && status === 406) {
         throw new Error('An error has ocurred')
