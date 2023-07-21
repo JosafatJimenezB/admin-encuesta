@@ -13,9 +13,14 @@ export const signUpWithEmail = async (data) => {
   return result
 }
 
-export const updateProfile = async (data) => {
+export const updateProfile = async (id, full_name) => {
   try {
-    await supabase.from('profiles').upsert(data, { returning: 'minimal' })
+    await supabase.from('profiles').upsert({ 
+      user_id: id,
+       full_name: full_name
+      },{
+      returning: 'minimal'
+      })
   } catch (error) {
     console.error(error)
   }
