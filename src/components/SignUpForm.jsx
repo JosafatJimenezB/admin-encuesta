@@ -9,7 +9,6 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 
-import { supabase } from "../api/config";
 import useForm from "../hooks/useForm";
 import { signUpWithEmail, updateProfile } from "../services/auth";
 
