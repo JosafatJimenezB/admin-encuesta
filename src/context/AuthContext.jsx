@@ -1,37 +1,37 @@
-import { createContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { supabase } from '../api/config'
+import { supabase } from "../api/config";
 
 export const AuthContext = createContext({
-  user: null
-})
+  user: null,
+});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(async () => checkUser())
+    const { data: authListener } = supabase.auth.onAuthStateChange(async () =>
+      checkUser()
+    );
 
     const checkUser = async () => {
-      const user = supabase.auth.user()
+      const user = supabase.auth.user();
       if (user) {
-        setUser(user)
-        navigate('/', { replace: true })
+        setUser(user);
+        navigate("/", { replace: true });
       } else {
-        navigate('/login', { replace: true })
+        navigate("/login", { replace: true });
       }
-    }
-    checkUser()
+    };
+    checkUser();
     return () => {
-      authListener?.unsubscribe()
-    }
-  }, [])
+      authListener?.unsubscribe();
+    };
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>
-      { children }
-    </AuthContext.Provider>
-  )
-}
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+  );
+};
