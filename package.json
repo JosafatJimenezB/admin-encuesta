@@ -12,10 +12,12 @@
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@supabase/supabase-js": "^1.30.6",
+    "leaflet": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.3.1",
+    "react-leaflet": "^3.2.5",
     "react-router-dom": "^6.2.1"
   },
   "devDependencies": {
