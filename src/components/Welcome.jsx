@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  List,
-  ListItem,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, List, ListItem } from "@chakra-ui/react";
 import { RiBugLine, RiCloseLine, RiMenu2Fill } from "react-icons/ri";
 import MapLeaf from "./MapLeaft";
 import Data from "./Data";
@@ -106,3 +97,5 @@ const Welcome = () => {
     </Flex>
   );
 };
+
+export default Welcome;
