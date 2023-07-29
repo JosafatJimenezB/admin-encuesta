@@ -1,27 +1,29 @@
-import { Flex, Center, Container } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  useColorModeValue,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 import MagicLinkForm from "./MagicLinkForm";
 import LoginForm from "./LoginForm";
 
 const LoginPage = () => {
   return (
-    <Container w="100%" h="100%">
-      <Flex
-        w="auto"
-        h="100%"
-        alignItems="center"
-        justifyContent="center"
-        gap={10}
-        flexDirection={{ base: "column", md: "row" }}
-      >
-        <Center>
-          <LoginForm />
-        </Center>
-        <Center>
-          <MagicLinkForm />
-        </Center>
-      </Flex>
-    </Container>
+    <Flex
+      minH={"100vh"}
+      align={"center"}
+      justify={"center"}
+      bg={useColorModeValue("gray.50", "gray.800")}
+    >
+      <Stack whiteSpace={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        <Stack align={"center"}>
+          <Heading fontSize={"4xl"}>Inicie sesión en su cuenta</Heading>
+        </Stack>
+        <LoginForm />
+      </Stack>
+    </Flex>
   );
 };
 

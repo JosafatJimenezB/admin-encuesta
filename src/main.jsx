@@ -1,10 +1,11 @@
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { ChakraProvider } from '@chakra-ui/react'
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import "./index.css";
 
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from "./context/AuthContext";
 
-import App from './App'
+import App from "./App";
 
 ReactDOM.render(
   <ChakraProvider>
@@ -14,5 +15,5 @@ ReactDOM.render(
       </AuthProvider>
     </BrowserRouter>
   </ChakraProvider>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);
