@@ -106,5 +106,3 @@ const Welcome = () => {
     </Flex>
   );
 };
-
-export default Welcome;
