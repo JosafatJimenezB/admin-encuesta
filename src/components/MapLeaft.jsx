@@ -1,18 +1,20 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
-import Markers from './Markers'
-import 'leaflet/dist/leaflet.css'
-const position = [19.0348, -98.2172]
+import { MapContainer, TileLayer } from "react-leaflet";
+import Markers from "./Markers";
+import "leaflet/dist/leaflet.css";
+
+const position = [19.0348, -98.2172];
+
 const MapLeaft = () => {
   return (
     <MapContainer
       center={position}
-      zoom={13}
+      zoom={9}
       scrollWheelZoom={false}
       style={{
-        height: '50vh',
-        width: 'auto',
+        height: "90vh",
+        width: "auto",
         zIndex: 0,
-        position: 'relative'
+        position: "relative",
       }}
     >
       <TileLayer
@@ -21,7 +23,7 @@ const MapLeaft = () => {
       />
       <Markers />
     </MapContainer>
-  )
-}
+  );
+};
 
-export default MapLeaft
+export default MapLeaft;

@@ -1,38 +1,33 @@
-import { Marker } from 'react-leaflet'
-import { useEffect, useState } from 'react'
+import { Marker } from "react-leaflet";
+import { useEffect, useState } from "react";
 
 const Markers = () => {
-  const [markers, setMarkers] = useState([])
+  const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          'https://api-usuarios.vercel.app/api/v1/all'
-        )
-        const data = await response.json()
-
-        setMarkers(data)
+        const response = await fetch(import.meta.env.VITE_PUBLIC_DATA_ALL);
+        const data = await response.json();
+        console.log(data);
+        setMarkers(data);
       } catch (error) {
-        console.log('error', error)
+        console.log("Error al obtener los datos:", error);
       }
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const colorMap = {
-    azul: 'blue',
-    rojo: 'red',
-    verde: 'green'
-  }
+    azul: "blue",
+    rojo: "red",
+    verde: "green",
+  };
 
   return (
     <>
       {markers.map((marker) => {
-        const color =
-          marker.responses.length > 0
-            ? colorMap[Object.values(marker.responses[0])[0]] || 'gray'
-            : 'gray'
+        const color = colorMap[Object.values(marker.responses[0])[0]] || "gray";
         return (
           <Marker
             key={marker.id}
@@ -44,14 +39,14 @@ const Markers = () => {
                 iconAnchor: [12, 41],
                 popupAnchor: [1, -34],
                 tooltipAnchor: [16, -28],
-                shadowSize: [41, 41]
+                shadowSize: [41, 41],
               })
             }
           />
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
-export default Markers
+export default Markers;

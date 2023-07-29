@@ -1,12 +1,13 @@
-import { Container } from '@chakra-ui/react'
-import AppRouter from './routers'
+import { Container } from "@chakra-ui/react";
+import "./index.css";
+import AppRouter from "./routers";
 
-function App () {
+function App() {
   return (
-    <Container maxW='100%' h='100vh'>
+    <Container maxW="100%" h="100vh">
       <AppRouter />
     </Container>
-  )
+  );
 }
 
-export default App
+export default App;

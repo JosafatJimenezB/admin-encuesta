@@ -1,12 +1,12 @@
 import toast, { Toaster } from "react-hot-toast";
 import {
+  Box,
   Button,
   FormControl,
   FormLabel,
-  Heading,
   Input,
   Stack,
-  Flex,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { signInWithEmail } from "../services/auth";
@@ -33,12 +33,14 @@ const LoginForm = () => {
 
   return (
     <>
-      <Flex flexDirection="column">
-        <Heading fontSize="2xl" mb="15px">
-          Email and Password
-        </Heading>
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={4}>
+      <Box
+        rounded={"lg"}
+        bg={useColorModeValue("white", "gray.700")}
+        boxShadow={"lg"}
+        p={8}
+      >
+        <Stack spacing={4}>
+          <form onSubmit={handleSubmit}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input
@@ -57,15 +59,15 @@ const LoginForm = () => {
                 onChange={handleInputChange}
               />
             </FormControl>
-            <Stack spacing={6}>
+            <Stack spacing={6} mt={4}>
               <Button type="submit" bg={"blue.400"} color={"white"}>
                 Sign in
               </Button>
             </Stack>
-          </Stack>
-        </form>
+          </form>
+        </Stack>
         <Toaster />
-      </Flex>
+      </Box>
     </>
   );
 };
