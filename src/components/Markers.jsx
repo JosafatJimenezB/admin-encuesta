@@ -7,7 +7,9 @@ const Markers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(import.meta.env.VITE_PUBLIC_DATA_ALL);
+        const response = await fetch(
+          `${import.meta.env.VITE_PUBLIC_DATA_ALL}/all`
+        );
         const data = await response.json();
         console.log(data);
         setMarkers(data);
