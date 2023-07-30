@@ -5,28 +5,32 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 const QuestionChart = ({ question, data }) => {
   const title = question.question;
   const responses = question.responses;
-
-  const [answerCounts, setAnswerCounts] = useState({});
+  const [answerCounts, setAnswerCounts] = useState({}); // Initialize counts object
 
   useEffect(() => {
     if (data && data.length > 0) {
-      const counts = { verde: 0, rojo: 0, azul: 0 }; // Initialize counts object with 0 values for each color
+      const counts = {}; // Initialize counts object
+
+      // Inicializamos los contadores para cada respuesta en 0
+      responses.forEach((response) => {
+        const respuesta = Object.values(response)[0];
+        counts[respuesta] = 0;
+      });
+
       data.forEach((item) => {
-        responses.forEach((response) => {
-          const answerKey = Object.keys(response)[0];
-          const answer = response[answerKey];
-          if (item.responses[answerKey] === answer) {
-            counts[answer] += 1; // Increment count for the corresponding color
-          }
+        item.responses.forEach((response) => {
+          const respuestaAPI = Object.values(response)[0]; // Get the value of the response from API data
+          counts[respuestaAPI] += 1; // Increment count for the corresponding response
         });
       });
+
       setAnswerCounts(counts);
     }
   }, [data, responses]);
 
   const chartData = responses.map((response) => ({
-    name: response.answer,
-    count: answerCounts[response.answer] || 0,
+    name: Object.values(response)[0], // Get the value of the response (e.g., "verde")
+    count: answerCounts[Object.values(response)[0]] || 0, // Get the count for the response
   }));
 
   return (
