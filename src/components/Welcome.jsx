@@ -8,8 +8,8 @@ import useProfile from "../hooks/useProfile";
 import { logout } from "../services/auth";
 
 const Welcome = () => {
-  const [currentSection, setCurrentSection] = useState("mapa");
-  const [showMenu, setShowMenu] = useState(true); // State to handle menu visibility
+  const [currentSection, setCurrentSection] = useState("data");
+  const [showMenu, setShowMenu] = useState(false); // State to handle menu visibility
 
   const userProfile = useProfile();
 
