@@ -1,36 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
-const QuestionChart = ({ question, data }) => {
+const QuestionChart = ({ question }) => {
   const title = question.question;
   const responses = question.responses;
-  const [answerCounts, setAnswerCounts] = useState({}); // Initialize counts object
+  const [answerCounts, setAnswerCounts] = useState({});
 
   useEffect(() => {
-    if (data && data.length > 0) {
-      const counts = {}; // Initialize counts object
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_PUBLIC_DATA_ALL}/all`
+        );
+        const data = await response.json();
 
-      // Inicializamos los contadores para cada respuesta en 0
-      responses.forEach((response) => {
-        const respuesta = Object.values(response)[0];
-        counts[respuesta] = 0;
-      });
-
-      data.forEach((item) => {
-        item.responses.forEach((response) => {
-          const respuestaAPI = Object.values(response)[0]; // Get the value of the response from API data
-          counts[respuestaAPI] += 1; // Increment count for the corresponding response
+        const counts = { ...answerCounts };
+        responses.forEach((response) => {
+          const respuesta = Object.values(response)[0];
+          counts[respuesta] = 0;
         });
-      });
 
-      setAnswerCounts(counts);
+        data.forEach((item) => {
+          const responseValues = Object.values(item.responses[0]);
+          const respuestaAPI = responseValues[0];
+
+          if (respuestaAPI in counts) {
+            counts[respuestaAPI] += 1;
+          }
+        });
+
+        setAnswerCounts(counts);
+      } catch (error) {
+        console.log("Error al obtener los datos:", error);
+      }
     }
-  }, [data, responses]);
+    fetchData();
+  }, [responses, answerCounts]);
 
-  const chartData = responses.map((response) => ({
-    name: Object.values(response)[0], // Get the value of the response (e.g., "verde")
-    count: answerCounts[Object.values(response)[0]] || 0, // Get the count for the response
+  const chartData = Object.keys(answerCounts).map((respuesta) => ({
+    name: respuesta,
+    count: answerCounts[respuesta] || 0,
   }));
 
   return (
