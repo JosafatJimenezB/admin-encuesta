@@ -15,6 +15,7 @@ const NavbarAdmin = () => {
       mt={4}
       pr={8}
       pl={8}
+      pb={4}
       flexDirection={'row'}
       justifyContent={'space-between'}
     >
