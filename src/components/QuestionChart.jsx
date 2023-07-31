@@ -1,32 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
-const QuestionChart = ({ question, data }) => {
+const QuestionChart = ({ question }) => {
   const title = question.question;
   const responses = question.responses;
-
   const [answerCounts, setAnswerCounts] = useState({});
 
   useEffect(() => {
-    if (data && data.length > 0) {
-      const counts = { verde: 0, rojo: 0, azul: 0 }; // Initialize counts object with 0 values for each color
-      data.forEach((item) => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_PUBLIC_DATA_ALL}/all`
+        );
+        const data = await response.json();
+
+        const counts = { ...answerCounts };
         responses.forEach((response) => {
-          const answerKey = Object.keys(response)[0];
-          const answer = response[answerKey];
-          if (item.responses[answerKey] === answer) {
-            counts[answer] += 1; // Increment count for the corresponding color
+          const respuesta = Object.values(response)[0];
+          counts[respuesta] = 0;
+        });
+
+        data.forEach((item) => {
+          const responseValues = Object.values(item.responses[0]);
+          const respuestaAPI = responseValues[0];
+
+          if (respuestaAPI in counts) {
+            counts[respuestaAPI] += 1;
           }
         });
-      });
-      setAnswerCounts(counts);
-    }
-  }, [data, responses]);
 
-  const chartData = responses.map((response) => ({
-    name: response.answer,
-    count: answerCounts[response.answer] || 0,
+        setAnswerCounts(counts);
+      } catch (error) {
+        console.log("Error al obtener los datos:", error);
+      }
+    }
+    fetchData();
+  }, [responses, answerCounts]);
+
+  const chartData = Object.keys(answerCounts).map((respuesta) => ({
+    name: respuesta,
+    count: answerCounts[respuesta] || 0,
   }));
 
   return (
