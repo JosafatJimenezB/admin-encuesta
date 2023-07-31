@@ -70,8 +70,6 @@ const Data = () => {
       "Respuesta 6",
       "Respuesta 7",
     ]);
-
-    console.log(csvData);
     return csvData;
   };
 
