@@ -15,7 +15,6 @@ const QuestionResponse = ({ question, data }) => {
 
   const answerCounts = responses.reduce((counts, response) => {
     counts[response.answer] = 0;
-    console.log(counts);
     return counts;
   }, {});
 
@@ -41,8 +40,9 @@ const QuestionResponse = ({ question, data }) => {
         return (
           <Text key={index} my={1}>
             <Badge
+              color={"white"}
               rounded={"md"}
-              bg={`${getColorForAnswer(response.answer)}.300`}
+              bg={`${getColorForAnswer(response.answer)}.500`}
             >
               {response.answer}
             </Badge>{" "}
