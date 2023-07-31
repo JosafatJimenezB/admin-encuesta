@@ -17,7 +17,7 @@ const Data = () => {
         );
         const data = await response.json();
         setData(data);
-        setIsDataLoaded(true); // Marcar que los datos se han cargado
+        setIsDataLoaded(true);
       } catch (error) {
         console.log("Error al obtener los datos:", error);
       }
@@ -43,18 +43,18 @@ const Data = () => {
 
   const prepareCSVData = (data) => {
     const csvData = data.map((item) => {
-      return [
-        item.createdAt,
-        item.ubication.lat,
-        item.ubication.long,
-        item.responses[0].answer1,
-        item.responses[0].answer2,
-        item.responses[0].answer3,
-        item.responses[0].answer4,
-        item.responses[0].answer5,
-        item.responses[0].answer6,
-        item.responses[0].answer7,
-      ];
+      const rowData = [item.createdAt, item.ubication.lat, item.ubication.long];
+
+      // Iterar a través de todas las preguntas (answer1 a answer7)
+      for (let i = 1; i <= 7; i++) {
+        const questionKey = `answer${i}`;
+        const response = item.responses.find(
+          (response) => response[questionKey]
+        );
+        rowData.push(response ? response[questionKey] : "");
+      }
+
+      return rowData;
     });
 
     // Agregar una fila para los encabezados del CSV (opcional)
@@ -71,6 +71,7 @@ const Data = () => {
       "Respuesta 7",
     ]);
 
+    console.log(csvData);
     return csvData;
   };
 
@@ -88,22 +89,16 @@ const Data = () => {
         align={"center"}
       >
         <Button
+          my={2}
           colorScheme="blue"
           onClick={handleDownloadCSV}
           disabled={!isDataLoaded}
         >
-          Descargar datos en CSV
+          Descargar datos
         </Button>
       </Container>
 
-      <Flex
-        w={"full"}
-        border={"4px"}
-        borderColor={"blue.400"}
-        rounded={"lg"}
-        flexDir="column"
-        flexWrap={"wrap"}
-      >
+      <Flex w={"full"} rounded={"lg"} flexDir="column" flexWrap={"wrap"}>
         {questions.map((question, index) => (
           <Flex
             bg={"gray.50"}
