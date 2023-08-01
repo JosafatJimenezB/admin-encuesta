@@ -1,3 +1,4 @@
+import toast, { Toaster } from "react-hot-toast";
 import {
   Button,
   FormControl,
@@ -21,39 +22,47 @@ const MagicLinkForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email } = formValues;
-    await signInWithMagicLink(email);
-    reset();
+
+    try {
+      if (email == "") {
+        toast.error("Debe ingresar un correo");
+      } else {
+        await signInWithMagicLink(email);
+        reset();
+        toast.success(`Se envio un correo a \n ${email} \ncon instrucciones`);
+      }
+    } catch (error) {
+      toast.error("no se pudo enviar el correo");
+    }
   };
 
   return (
     <>
-      <Flex
-        alignContent={"center"}
-        justifyContent={"center"}
-        flexDirection={"column"}
-      >
-        <Heading fontSize="2xl" mb="15px">
-          Magic link
-        </Heading>
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input
-                type="email"
-                name="email"
-                value={formValues.email}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-            <Stack spacing={6}>
-              <Button type="submit" bg={"blue.400"} color={"white"}>
-                Sign in
-              </Button>
-            </Stack>
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={4}>
+          <FormControl id="email">
+            <FormLabel mb={1} color={"blue.700"} fontWeight={"700"}>
+              Email address
+            </FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleInputChange}
+            />
+          </FormControl>
+          <Stack spacing={6}>
+            <Button
+              type="submit"
+              bg={"blue.600"}
+              color={"white"}
+              _hover={{ bg: "blue.300", color: "white" }}
+            >
+              Iniciar sesión
+            </Button>
           </Stack>
-        </form>
-      </Flex>
+        </Stack>
+      </form>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { RiMailLine } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import {
   Box,
@@ -5,12 +6,16 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Heading,
+  Text,
+  Spacer,
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
 
 import { signInWithEmail } from "../services/auth";
 import useForm from "../hooks/useForm";
+import MagicLinkForm from "./MagicLinkForm";
 
 const initialState = {
   email: "",
@@ -24,10 +29,15 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { email, password } = formValues;
-      await signInWithEmail(email, password);
-      toast.success("Logged in successfully");
+      // const data = await signInWithEmail(email, password);
+      await toast.promise(signInWithEmail(email, password)),
+        {
+          loading: "Loading",
+          success: "Login successful",
+          error: "Login failed",
+        };
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Datos incorrectos");
     }
   };
 
@@ -39,11 +49,23 @@ const LoginForm = () => {
         boxShadow={"lg"}
         p={8}
       >
+        <Stack align={"center"}>
+          <Heading
+            fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+            color={"blue.700"}
+            mb={6}
+          >
+            Login
+          </Heading>
+        </Stack>
         <Stack spacing={4}>
           <form onSubmit={handleSubmit}>
             <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
+              <FormLabel mb={1} color={"blue.700"} fontWeight={"700"}>
+                Email
+              </FormLabel>
               <Input
+                mb={4}
                 type="email"
                 name="email"
                 value={formValues.email}
@@ -51,8 +73,11 @@ const LoginForm = () => {
               />
             </FormControl>
             <FormControl id="password">
-              <FormLabel>Password</FormLabel>
+              <FormLabel mb={1} color={"blue.700"} fontWeight={"700"}>
+                Password
+              </FormLabel>
               <Input
+                mb={3}
                 type="password"
                 name="password"
                 value={formValues.password}
@@ -60,11 +85,27 @@ const LoginForm = () => {
               />
             </FormControl>
             <Stack spacing={6} mt={4}>
-              <Button type="submit" bg={"blue.400"} color={"white"}>
-                Sign in
+              <Button
+                type="submit"
+                bg={"blue.600"}
+                color={"white"}
+                _hover={{ bg: "blue.300", color: "white" }}
+              >
+                Iniciar Sesión
               </Button>
             </Stack>
           </form>
+          <Spacer />
+          <Text align={"center"}> Or</Text>
+          <Spacer />
+          <Heading
+            fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+            align={"center"}
+            color={"blue.700"}
+          >
+            Magic Link
+          </Heading>
+          <MagicLinkForm />
         </Stack>
         <Toaster />
       </Box>

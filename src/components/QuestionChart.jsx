@@ -1,5 +1,3 @@
-// QuestionChart.jsx
-
 import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
