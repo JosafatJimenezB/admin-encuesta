@@ -8,7 +8,6 @@ const MapLeaft = () => {
 
   return (
     <>
-      //Todo: Usar LayersControl en de select
       <select
         value={selectedQuestion}
         onChange={(e) => setSelectedQuestion(e.target.value)}
@@ -33,6 +32,7 @@ const MapLeaft = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
         <Markers selectedQuestion={selectedQuestion} />
       </MapContainer>
     </>
