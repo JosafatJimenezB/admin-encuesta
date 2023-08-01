@@ -65,6 +65,7 @@ const LoginForm = ({ onMenuClick }) => {
                 Email
               </FormLabel>
               <Input
+                minW={"28"}
                 mb={4}
                 type="email"
                 name="email"
@@ -78,7 +79,6 @@ const LoginForm = ({ onMenuClick }) => {
               </FormLabel>
               <Input
                 mb={3}
-                w={"90%"}
                 type="password"
                 name="password"
                 value={formValues.password}
