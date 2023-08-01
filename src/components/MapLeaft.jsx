@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 import { useState } from "react";
 import Markers from "./Markers";
@@ -8,6 +9,9 @@ const MapLeaft = () => {
 
   return (
     <>
+      <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }} my={3}>
+        Mapa de datos
+      </Text>
       <select
         value={selectedQuestion}
         onChange={(e) => setSelectedQuestion(e.target.value)}
