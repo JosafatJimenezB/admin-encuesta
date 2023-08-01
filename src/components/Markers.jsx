@@ -23,7 +23,7 @@ const Markers = ({ selectedQuestion }) => {
 
         setMarkers(data)
       } catch (error) {
-        console.log('error', error)
+        console.log('Error al obtener los datos:', error)
       }
     }
     fetchData()
