@@ -1,7 +1,7 @@
-import { Marker } from 'react-leaflet'
+import { Marker, Popup } from 'react-leaflet'
 import { useEffect, useState } from 'react'
 
-const Markers = () => {
+const Markers = ({ selectedQuestion }) => {
   const [markers, setMarkers] = useState([])
 
   useEffect(() => {
@@ -11,6 +11,7 @@ const Markers = () => {
           'https://api-usuarios.vercel.app/api/v1/all'
         )
         const data = await response.json()
+        console.log('data', data)
 
         setMarkers(data)
       } catch (error) {
@@ -26,13 +27,26 @@ const Markers = () => {
     verde: 'green'
   }
 
+  const filteredMarkers = markers.filter((marker) => {
+    const selectedResponse = marker.responses.find(
+      (response) => Object.keys(response)[0] === selectedQuestion
+    )
+    return selectedResponse !== undefined
+  })
+
   return (
     <>
-      {markers.map((marker) => {
+      {filteredMarkers.map((marker) => {
+        const selectedResponse = marker.responses.find(
+          (response) => Object.keys(response)[0] === selectedQuestion
+        )
         const color =
-          marker.responses.length > 0
-            ? colorMap[Object.values(marker.responses[0])[0]] || 'gray'
+          selectedResponse !== undefined
+            ? colorMap[selectedResponse[selectedQuestion]] || 'gray'
             : 'gray'
+        const answer = selectedResponse
+          ? selectedResponse[selectedQuestion]
+          : ''
         return (
           <Marker
             key={marker.id}
@@ -47,7 +61,13 @@ const Markers = () => {
                 shadowSize: [41, 41]
               })
             }
-          />
+          >
+            <Popup>
+              {answer}
+              <br />
+              {marker.id}
+            </Popup>
+          </Marker>
         )
       })}
     </>
