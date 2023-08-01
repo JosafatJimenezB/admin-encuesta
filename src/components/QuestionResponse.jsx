@@ -29,7 +29,7 @@ const QuestionResponse = ({ question, data }) => {
   });
 
   return (
-    <Flex w={"full"} flexDirection="column" rounded={"lg"} p={4}>
+    <Flex w={"full"} flexDirection="column" rounded={"lg"} p={4} m={0}>
       <Text fontSize="xl" fontWeight="bold" mb={2}>
         {title}
       </Text>

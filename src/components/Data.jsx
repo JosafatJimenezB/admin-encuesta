@@ -75,7 +75,7 @@ const Data = () => {
 
   return (
     <Flex w={"full"} p={0} m={0} flexDir={"column"}>
-      <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }}>
+      <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }} my={3}>
         Estadísticas de los datos
       </Text>
       <Container
@@ -83,6 +83,7 @@ const Data = () => {
         w={"full"}
         p={0}
         m={0}
+        mb={4}
         flexDir={"column"}
         align={"center"}
       >
@@ -96,7 +97,14 @@ const Data = () => {
         </Button>
       </Container>
 
-      <Flex w={"full"} rounded={"lg"} flexDir="column" flexWrap={"wrap"}>
+      <Flex
+        p={0}
+        m={0}
+        w={"full"}
+        rounded={"lg"}
+        flexDir="column"
+        flexWrap={"wrap"}
+      >
         {questions.map((question, index) => (
           <Flex
             bg={"gray.50"}
@@ -110,7 +118,7 @@ const Data = () => {
               w={{ base: "100%", md: "100%" }}
               bg={"blue.100"}
               align={{ base: "start", md: "center" }}
-              ml={{ base: 0, md: 4, lg: 6 }}
+              ml={{ base: 0, md: 0, lg: 6 }}
             >
               <QuestionResponse question={question} data={data} />
             </Box>
