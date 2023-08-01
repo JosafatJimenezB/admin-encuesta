@@ -1,4 +1,4 @@
-import { RiMailLine } from "react-icons/ri";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
   Box,
@@ -11,18 +11,18 @@ import {
   Spacer,
   Stack,
   useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
-
 import { signInWithEmail } from "../services/auth";
-import useForm from "../hooks/useForm";
 import MagicLinkForm from "./MagicLinkForm";
+import useForm from "../hooks/useForm";
 
 const initialState = {
   email: "",
   password: "",
 };
 
-const LoginForm = () => {
+const LoginForm = ({ onMenuClick }) => {
   const { formValues, handleInputChange } = useForm(initialState);
 
   const handleSubmit = async (e) => {
@@ -58,7 +58,7 @@ const LoginForm = () => {
             Login
           </Heading>
         </Stack>
-        <Stack spacing={4}>
+        <Stack w={"full"} spacing={4}>
           <form onSubmit={handleSubmit}>
             <FormControl id="email">
               <FormLabel mb={1} color={"blue.700"} fontWeight={"700"}>
@@ -78,6 +78,7 @@ const LoginForm = () => {
               </FormLabel>
               <Input
                 mb={3}
+                w={"90%"}
                 type="password"
                 name="password"
                 value={formValues.password}
@@ -106,6 +107,12 @@ const LoginForm = () => {
             Magic Link
           </Heading>
           <MagicLinkForm />
+          <Text>
+            No tiene una cuenta? {""}
+            <Link color={"blue.400"} onClick={() => onMenuClick("signup")}>
+              Crear una
+            </Link>
+          </Text>
         </Stack>
         <Toaster />
       </Box>
