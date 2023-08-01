@@ -27,17 +27,18 @@ const LoginForm = ({ onMenuClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = formValues;
+
+    if (!email || !password) {
+      toast.error("Debe llenar todos los campos");
+      return;
+    }
+
     try {
-      const { email, password } = formValues;
-      // const data = await signInWithEmail(email, password);
-      await toast.promise(signInWithEmail(email, password)),
-        {
-          loading: "Loading",
-          success: "Login successful",
-          error: "Login failed",
-        };
+      await signInWithEmail(email, password);
+      toast.success("Bienvenido");
     } catch (error) {
-      toast.error("Datos incorrectos");
+      toast.error("Datos incorrectos\n intente nuevamente");
     }
   };
 
