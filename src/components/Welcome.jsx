@@ -3,10 +3,10 @@ import {
   Box,
   Button,
   Flex,
-  Text,
   List,
   ListItem,
   Badge,
+  Text,
 } from "@chakra-ui/react";
 import { RiBuilding4Line, RiCloseLine, RiMenu2Fill } from "react-icons/ri";
 import MapLeaf from "./MapLeaft";
@@ -32,11 +32,7 @@ const Welcome = () => {
   };
 
   return (
-    <Flex minH="100vh" w="full" pos={"relative"} flexDir={"column"}>
-      <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }} mt={3}>
-        Ubicaciones de las respuestas
-      </Text>
-
+    <Flex minH="100vh" w="full" pos={"relative"}>
       <Box
         pos="fixed"
         left={showMenu ? 0 : "-100%"}
