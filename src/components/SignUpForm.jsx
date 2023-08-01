@@ -28,28 +28,27 @@ const SingUpForm = () => {
       email: emailr,
       password: passwordr,
     };
-    try{
+    try {
       const registerUser = await signUpWithEmail(data);
 
-      if (registerUser){
-        await updateProfile(registerUser.user.id, fullName)
+      if (registerUser) {
+        await updateProfile(registerUser.user.id, fullName);
       }
       reset();
-    } catch (error){
-      console.log("Error al registrarse" ,error)
+    } catch (error) {
+      console.log("Error al registrarse", error);
     }
-
   };
 
   return (
     <>
       <Heading fontSize="2xl" mb="15px">
-        Register
+        Registro
       </Heading>
       <form onSubmit={handleSubmit}>
         <Stack spacing={4}>
           <FormControl id="fullName">
-            <FormLabel>Full Name</FormLabel>
+            <FormLabel>Nombre</FormLabel>
             <Input
               type="text"
               name="fullName"
@@ -83,7 +82,7 @@ const SingUpForm = () => {
             bg={"blue.400"}
             color={"white"}
           >
-            Sign up
+            Registrarse
           </Button>
         </Stack>
       </form>
