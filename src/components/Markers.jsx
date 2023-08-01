@@ -67,7 +67,9 @@ const Markers = ({ selectedQuestion }) => {
             <Popup>
               {answer}
               <br />
-              {marker.id}
+              {`Latitud: ${marker.ubication.lat}`}
+              <br />
+              {`Longitud: ${marker.ubication.long}`}
             </Popup>
           </Marker>
         )
