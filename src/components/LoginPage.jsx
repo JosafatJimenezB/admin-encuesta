@@ -15,12 +15,9 @@ const LoginPage = () => {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bg={useColorModeValue("gray.50", "blue.800")}
     >
       <Stack whiteSpace={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Inicie sesión en su cuenta</Heading>
-        </Stack>
         <LoginForm />
       </Stack>
     </Flex>
