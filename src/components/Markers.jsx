@@ -1,8 +1,16 @@
 import { Marker, Popup } from 'react-leaflet'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
 const Markers = ({ selectedQuestion }) => {
   const [markers, setMarkers] = useState([])
+
+  const colorMap = useMemo(() => {
+    return {
+      azul: 'blue',
+      rojo: 'red',
+      verde: 'green'
+    }
+  }, [])
 
   useEffect(() => {
     async function fetchData() {
@@ -20,12 +28,6 @@ const Markers = ({ selectedQuestion }) => {
     }
     fetchData()
   }, [])
-
-  const colorMap = {
-    azul: 'blue',
-    rojo: 'red',
-    verde: 'green'
-  }
 
   const filteredMarkers = markers.filter((marker) => {
     const selectedResponse = marker.responses.find(
