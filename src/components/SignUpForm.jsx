@@ -1,3 +1,4 @@
+import { Toaster, toast } from "react-hot-toast";
 import {
   Box,
   Button,
@@ -28,19 +29,29 @@ const SingUpForm = ({ onMenuClick }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { emailr, passwordr, fullName } = formValues;
-    const data = {
-      email: emailr,
-      password: passwordr,
-    };
+
+    if (!emailr || !passwordr || !fullName) {
+      toast.error("Debe llenar todos los campos");
+      return;
+    }
+
     try {
+      const data = {
+        email: emailr,
+        password: passwordr,
+      };
       const registerUser = await signUpWithEmail(data);
 
       if (registerUser) {
         await updateProfile(registerUser.user.id, fullName);
       }
+
       reset();
+      toast.success(
+        "Cuenta creada con éxito \nSe enviaron instrucciones a su correo"
+      );
     } catch (error) {
-      console.log("Error al registrarse", error);
+      toast.error("Sucedio un error \nIntente más tarde");
     }
   };
 
@@ -68,6 +79,7 @@ const SingUpForm = ({ onMenuClick }) => {
                 Nombre
               </FormLabel>
               <Input
+                minW={"28"}
                 type="text"
                 name="fullName"
                 value={formValues.fullName}
@@ -117,6 +129,7 @@ const SingUpForm = ({ onMenuClick }) => {
             </Text>
           </Stack>
         </form>
+        <Toaster />
       </Box>
     </>
   );

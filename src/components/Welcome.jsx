@@ -16,7 +16,7 @@ import useProfile from "../hooks/useProfile";
 import { logout } from "../services/auth";
 
 const Welcome = () => {
-  const [currentSection, setCurrentSection] = useState("data");
+  const [currentSection, setCurrentSection] = useState("mapa");
   const [showMenu, setShowMenu] = useState(false);
 
   const userProfile = useProfile();
@@ -32,7 +32,11 @@ const Welcome = () => {
   };
 
   return (
-    <Flex minH="100vh" w="full" pos={"relative"}>
+    <Flex minH="100vh" w="full" pos={"relative"} flexDir={"column"}>
+      <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }} mt={3}>
+        Ubicaciones de las respuestas
+      </Text>
+
       <Box
         pos="fixed"
         left={showMenu ? 0 : "-100%"}
