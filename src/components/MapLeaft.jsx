@@ -1,10 +1,10 @@
-import { MapContainer, TileLayer, LayersControl } from 'react-leaflet'
-import { useState } from 'react'
-import Markers from './Markers'
-import 'leaflet/dist/leaflet.css'
-const position = [19.0348, -98.2172]
+import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
+import { useState } from "react";
+import Markers from "./Markers";
+import "leaflet/dist/leaflet.css";
+const position = [19.0348, -98.2172];
 const MapLeaft = () => {
-  const [selectedQuestion, setSelectedQuestion] = useState('answer1')
+  const [selectedQuestion, setSelectedQuestion] = useState("answer1");
 
   return (
     <>
@@ -26,10 +26,10 @@ const MapLeaft = () => {
         zoom={13}
         scrollWheelZoom={false}
         style={{
-          height: '50vh',
-          width: 'auto',
+          height: "86vh",
+          width: "auto",
           zIndex: 0,
-          position: 'relative'
+          position: "relative",
         }}
       >
         <TileLayer
@@ -40,7 +40,7 @@ const MapLeaft = () => {
         <Markers selectedQuestion={selectedQuestion} />
       </MapContainer>
     </>
-  )
-}
+  );
+};
 
-export default MapLeaft
+export default MapLeaft;
