@@ -68,6 +68,7 @@ const SingUpForm = ({ onMenuClick }) => {
                 Nombre
               </FormLabel>
               <Input
+                minW={"28"}
                 type="text"
                 name="fullName"
                 value={formValues.fullName}
