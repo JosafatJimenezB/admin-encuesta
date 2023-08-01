@@ -16,6 +16,10 @@ const MapLeaft = () => {
         <option value="answer1">Pregunta 1</option>
         <option value="answer2">Pregunta 2</option>
         <option value="answer3">Pregunta 3</option>
+        <option value="answer4">Pregunta 4</option>
+        <option value="answer5">Pregunta 5</option>
+        <option value="answer6">Pregunta 6</option>
+        <option value="answer7">Pregunta 7</option>
       </select>
       <MapContainer
         center={position}
