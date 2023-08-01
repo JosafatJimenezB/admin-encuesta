@@ -16,7 +16,7 @@ const Markers = ({ selectedQuestion }) => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://api-usuarios.vercel.app/api/v1/all"
+          `${import.meta.env.VITE_PUBLIC_DATA_ALL}/all`
         );
         const data = await response.json();
         console.log("data", data);
