@@ -17,7 +17,7 @@ import { logout } from "../services/auth";
 
 const Welcome = () => {
   const [currentSection, setCurrentSection] = useState("data");
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   const userProfile = useProfile();
 
@@ -111,7 +111,7 @@ const Welcome = () => {
           Logout
         </Button>
       </Box>
-      <Box w="full" p={5} flex={2}>
+      <Box w="full" p={0} flex={2}>
         {currentSection === "mapa" && <MapLeaf />}
         {currentSection === "data" && <Data />}
       </Box>
