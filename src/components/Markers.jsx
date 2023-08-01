@@ -1,35 +1,54 @@
-import { Marker } from "react-leaflet";
-import { useEffect, useState } from "react";
+import { Marker, Popup } from 'react-leaflet'
+import { useEffect, useState, useMemo } from 'react'
 
-const Markers = () => {
-  const [markers, setMarkers] = useState([]);
+const Markers = ({ selectedQuestion }) => {
+  const [markers, setMarkers] = useState([])
+
+  const colorMap = useMemo(() => {
+    return {
+      azul: 'blue',
+      rojo: 'red',
+      verde: 'green'
+    }
+  }, [])
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_PUBLIC_DATA_ALL}/all`
-        );
-        const data = await response.json();
-        console.log(data);
-        setMarkers(data);
+          'https://api-usuarios.vercel.app/api/v1/all'
+        )
+        const data = await response.json()
+        console.log('data', data)
+
+        setMarkers(data)
       } catch (error) {
-        console.log("Error al obtener los datos:", error);
+        console.log('Error al obtener los datos:', error)
       }
     }
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  const colorMap = {
-    azul: "blue",
-    rojo: "red",
-    verde: "green",
-  };
+  const filteredMarkers = markers.filter((marker) => {
+    const selectedResponse = marker.responses.find(
+      (response) => Object.keys(response)[0] === selectedQuestion
+    )
+    return selectedResponse !== undefined
+  })
 
   return (
     <>
-      {markers.map((marker) => {
-        const color = colorMap[Object.values(marker.responses[0])[0]] || "gray";
+      {filteredMarkers.map((marker) => {
+        const selectedResponse = marker.responses.find(
+          (response) => Object.keys(response)[0] === selectedQuestion
+        )
+        const color =
+          selectedResponse !== undefined
+            ? colorMap[selectedResponse[selectedQuestion]] || 'gray'
+            : 'gray'
+        const answer = selectedResponse
+          ? selectedResponse[selectedQuestion]
+          : ''
         return (
           <Marker
             key={marker.id}
@@ -41,14 +60,20 @@ const Markers = () => {
                 iconAnchor: [12, 41],
                 popupAnchor: [1, -34],
                 tooltipAnchor: [16, -28],
-                shadowSize: [41, 41],
+                shadowSize: [41, 41]
               })
             }
-          />
-        );
+          >
+            <Popup>
+              {answer}
+              <br />
+              {marker.id}
+            </Popup>
+          </Marker>
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default Markers;
+export default Markers
