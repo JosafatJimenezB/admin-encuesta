@@ -32,7 +32,7 @@ const Welcome = () => {
         h="full"
         px={3}
         py={5}
-        bg="teal.200"
+        bg="blue.700"
         flexDir="column"
         borderRightWidth="1px"
         duration="300ms"
@@ -41,7 +41,7 @@ const Welcome = () => {
         <Text
           fontSize="2xl"
           my="10"
-          color="teal.500"
+          color="white"
           fontWeight="bold"
           display="flex"
           alignItems="center"
@@ -53,6 +53,7 @@ const Welcome = () => {
         <List as="ul" spacing={2}>
           <ListItem>
             <Button
+              color={"white"}
               variant="ghost"
               onClick={() => handleMenuClick("mapa")}
               mr="2"
@@ -62,6 +63,7 @@ const Welcome = () => {
           </ListItem>
           <ListItem>
             <Button
+              color={"white"}
               variant="ghost"
               onClick={() => handleMenuClick("data")}
               mr="2"
@@ -86,7 +88,7 @@ const Welcome = () => {
         top="1"
         right="1"
         fontSize="xl"
-        bg="teal.500"
+        bg="blue.700"
         p="2"
         color="white"
         borderRadius="full"
