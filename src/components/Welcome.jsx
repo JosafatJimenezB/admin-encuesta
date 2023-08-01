@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { Box, Button, Flex, Text, List, ListItem } from "@chakra-ui/react";
-import { RiBugLine, RiCloseLine, RiMenu2Fill } from "react-icons/ri";
+import {
+  Box,
+  Button,
+  Flex,
+  Text,
+  List,
+  ListItem,
+  Badge,
+} from "@chakra-ui/react";
+import { RiBuilding4Line, RiCloseLine, RiMenu2Fill } from "react-icons/ri";
 import MapLeaf from "./MapLeaft";
 import Data from "./Data";
 import { AuthContext } from "../context/AuthContext";
@@ -9,7 +17,7 @@ import { logout } from "../services/auth";
 
 const Welcome = () => {
   const [currentSection, setCurrentSection] = useState("data");
-  const [showMenu, setShowMenu] = useState(false); // State to handle menu visibility
+  const [showMenu, setShowMenu] = useState(true);
 
   const userProfile = useProfile();
 
@@ -24,7 +32,7 @@ const Welcome = () => {
   };
 
   return (
-    <Flex minH="100vh" w="full">
+    <Flex minH="100vh" w="full" pos={"relative"}>
       <Box
         pos="fixed"
         left={showMenu ? 0 : "-100%"}
@@ -39,17 +47,37 @@ const Welcome = () => {
         zIndex={50}
       >
         <Text
-          fontSize="2xl"
-          my="10"
+          fontSize={{ base: "xl", lg: "2xl" }}
+          my={4}
           color="white"
           fontWeight="bold"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <RiBugLine className="mr-2" />
+          <RiBuilding4Line className="mr-2" />
           Departamento de Vinculación interinstitucional
         </Text>
+        <Box
+          border={"1px"}
+          borderColor={"blue.500"}
+          rounded={"md"}
+          p={3}
+          my={5}
+        >
+          <Text
+            fontSize="lg"
+            color={"blue.100"}
+            fontWeight={"600"}
+            textAlign={"center"}
+            textTransform={"capitalize"}
+          >
+            {userProfile ? userProfile.username : "Desconocido"}
+            <Badge ml={1} colorScheme="green" rounded={"lg"}>
+              Administrador
+            </Badge>
+          </Text>
+        </Box>
         <List as="ul" spacing={2}>
           <ListItem>
             <Button
@@ -72,7 +100,14 @@ const Welcome = () => {
             </Button>
           </ListItem>
         </List>
-        <Button colorScheme="red" onClick={handleLogout} mt={4}>
+        <Button
+          colorScheme="red"
+          onClick={handleLogout}
+          m={0}
+          position={"absolute"}
+          bottom={7}
+          left={6}
+        >
           Logout
         </Button>
       </Box>
