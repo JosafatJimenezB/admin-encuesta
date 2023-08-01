@@ -62,13 +62,13 @@ const Data = () => {
       "Fecha de creación",
       "Latitud",
       "Longitud",
-      "Respuesta 1",
-      "Respuesta 2",
-      "Respuesta 3",
-      "Respuesta 4",
-      "Respuesta 5",
-      "Respuesta 6",
-      "Respuesta 7",
+      "Pregunta 1",
+      "Pregunta 2",
+      "Pregunta 3",
+      "Pregunta 4",
+      "Pregunta 5",
+      "Pregunta 6",
+      "Pregunta 7",
     ]);
     return csvData;
   };
