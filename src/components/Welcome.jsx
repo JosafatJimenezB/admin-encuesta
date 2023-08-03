@@ -16,7 +16,7 @@ import useProfile from "../hooks/useProfile";
 import { logout } from "../services/auth";
 
 const Welcome = () => {
-  const [currentSection, setCurrentSection] = useState("data");
+  const [currentSection, setCurrentSection] = useState("mapa");
   const [showMenu, setShowMenu] = useState(false);
 
   const userProfile = useProfile();
