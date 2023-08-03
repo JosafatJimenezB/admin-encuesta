@@ -1,22 +1,17 @@
 import React from 'react'
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, color } from '@chakra-ui/react'
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar } from 'recharts'
 import questions from './questions'
-const QuestionChart = ({ data }) => {
-  const colors = [
-    '#FF0000',
-    '#00FF00',
-    '#0000FF',
-    '#FFFF00',
-    '#FF00FF',
-    '#00FFFF',
-    '#C0C0C0'
-  ]
 
+const QuestionChart = ({ data }) => {
   return (
     <Flex w={'full'} flexDirection="column" rounded={'lg'} p={4} m={0}>
       {questions.map((question, index) => {
+        console.log(question)
         const title = question.question
+        const colors = ['#FF0000', '#00FF00', '#0000FF']
+
+        console.log(colors)
 
         const answerCounts = data.reduce((counts, item) => {
           const response = item.responses[index]
@@ -30,14 +25,8 @@ const QuestionChart = ({ data }) => {
           const value = answerCounts[key]
           return {
             name: key,
-            value,
-            fill: colors[index % colors.length] // asignar un color a cada barra
+            value
           }
-        })
-
-        chartData.sort((a, b) => {
-          const order = ['verde', 'rojo', 'azul']
-          return order.indexOf(a.name) - order.indexOf(b.name)
         })
 
         return (
