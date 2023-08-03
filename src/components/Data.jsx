@@ -114,7 +114,7 @@ const Data = () => {
         >
           <QuestionResponse data={data} />
           <Spacer />
-          <QuestionChart questions={questions} data={data} />
+          <QuestionChart data={data} />
         </Flex>
       </Flex>
     </Flex>
