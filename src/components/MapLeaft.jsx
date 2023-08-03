@@ -3,7 +3,9 @@ import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 import { useState } from "react";
 import Markers from "./Markers";
 import "leaflet/dist/leaflet.css";
+
 const position = [19.0348, -98.2172];
+
 const MapLeaft = () => {
   const [selectedQuestion, setSelectedQuestion] = useState("answer1");
 
