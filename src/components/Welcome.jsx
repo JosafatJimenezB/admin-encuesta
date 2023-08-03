@@ -16,7 +16,7 @@ import useProfile from "../hooks/useProfile";
 import { logout } from "../services/auth";
 
 const Welcome = () => {
-  const [currentSection, setCurrentSection] = useState("mapa");
+  const [currentSection, setCurrentSection] = useState("data");
   const [showMenu, setShowMenu] = useState(false);
 
   const userProfile = useProfile();
@@ -116,7 +116,6 @@ const Welcome = () => {
         {currentSection === "data" && <Data />}
       </Box>
 
-      {/* Botón para alternar el menú en pantallas pequeñas (modo móvil) */}
       <Button
         pos="absolute"
         m={2}
