@@ -113,6 +113,7 @@ const Data = () => {
         >
           <Box
             w={{ base: "100%", md: "100%" }}
+            m={0}
             ml={{ base: 0, md: 0, lg: 6 }}
             p={0}
           >
