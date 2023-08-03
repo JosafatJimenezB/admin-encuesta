@@ -109,12 +109,17 @@ const Data = () => {
           bg={'gray.50'}
           w={'auto'}
           flexDir={{ base: 'column', md: 'row' }}
-          align={{ base: 'start', md: 'center' }}
+          align={{ base: 'start' }}
           justify={'center'}
         >
-          <QuestionResponse data={data} />
+          <Box w={{ base: '100%', md: '100%' }} ml={{ base: 0, md: 0, lg: 6 }}>
+            <QuestionResponse data={data} />
+          </Box>
+
           <Spacer />
-          <QuestionChart data={data} />
+          <Box w={'100%'}>
+            <QuestionChart data={data} />
+          </Box>
         </Flex>
       </Flex>
     </Flex>
