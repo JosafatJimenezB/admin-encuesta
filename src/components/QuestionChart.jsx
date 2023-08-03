@@ -28,6 +28,10 @@ const QuestionChart = ({ data }) => {
             value
           }
         })
+        chartData.sort((a, b) => {
+          const order = ['verde', 'rojo', 'azul']
+          return order.indexOf(a.name) - order.indexOf(b.name)
+        })
 
         return (
           <Flex
