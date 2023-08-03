@@ -17,8 +17,6 @@ const QuestionResponse = ({ data }) => {
       const answer = item.responses[index][answerKey]
       counts[index] = counts[index] || {} // inicializar el objeto para la pregunta
       counts[index][answer] = (counts[index][answer] || 0) + 1 // incrementar el conteo de la respuesta
-      console.log('counts', typeof counts)
-      console.log('counts', counts)
     })
 
     return counts
@@ -27,7 +25,6 @@ const QuestionResponse = ({ data }) => {
   const cantidadElementos = Object.keys(answerCounts).length
   delete answerCounts[Object.keys(answerCounts)[cantidadElementos - 1]]
 
-  console.log('answerCounts', answerCounts)
   data.forEach((item) => {
     item.responses.forEach((response, index) => {
       const answerKey = Object.keys(response)[0]
