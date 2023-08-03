@@ -114,9 +114,7 @@ const Data = () => {
         >
           <QuestionResponse data={data} />
           <Spacer />
-          <Box w={'100%'}>
-            {/* <QuestionChart question={questions} data={data} /> */}
-          </Box>
+          <QuestionChart questions={questions} data={data} />
         </Flex>
       </Flex>
     </Flex>
