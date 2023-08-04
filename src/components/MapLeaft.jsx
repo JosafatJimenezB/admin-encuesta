@@ -19,13 +19,24 @@ const MapLeaft = () => {
         onChange={(e) => setSelectedQuestion(e.target.value)}
       >
         <option value="">Selecciona una pregunta</option>
-        <option value="answer1">Pregunta 1</option>
-        <option value="answer2">Pregunta 2</option>
-        <option value="answer3">Pregunta 3</option>
-        <option value="answer4">Pregunta 4</option>
-        <option value="answer5">Pregunta 5</option>
-        <option value="answer6">Pregunta 6</option>
-        <option value="answer7">Pregunta 7</option>
+        <option value="answer1">Es usted</option>
+        <option value="answer2">Su negocio es</option>
+        <option value="answer3">
+          Si le ofrecieran alún crédito, ¿para qué lo usaria?
+        </option>
+        <option value="answer4">
+          Si puede conectarse vía internet, ¿qué dispositivo podría usar?
+        </option>
+        <option value="answer5">
+          ¿Usaría comercio electrónico a través de una APP para vender su
+          producto o servicio?
+        </option>
+        <option value="answer6">
+          ¿Cuenta con una terminal para el cobro con tarjeta de crédito?
+        </option>
+        <option value="answer7">
+          ¿Qué tipo de capacitación le interesaría más para su negocio?
+        </option>
       </select>
       <MapContainer
         center={position}
