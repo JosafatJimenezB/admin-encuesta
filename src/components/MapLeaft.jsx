@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Select, Text } from "@chakra-ui/react";
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 import { useState } from "react";
 import Markers from "./Markers";
@@ -14,7 +14,9 @@ const MapLeaft = () => {
       <Text fontSize={{ base: "24px", md: "40px", lg: "56px" }} my={3}>
         Mapa de datos
       </Text>
-      <select
+      <Select
+        variant="flushed"
+        mb={2}
         value={selectedQuestion}
         onChange={(e) => setSelectedQuestion(e.target.value)}
       >
@@ -37,13 +39,13 @@ const MapLeaft = () => {
         <option value="answer7">
           ¿Qué tipo de capacitación le interesaría más para su negocio?
         </option>
-      </select>
+      </Select>
       <MapContainer
         center={position}
         zoom={13}
         scrollWheelZoom={false}
         style={{
-          height: "86vh",
+          height: "calc(100vh - 150px)",
           width: "auto",
           zIndex: 0,
           position: "relative",
