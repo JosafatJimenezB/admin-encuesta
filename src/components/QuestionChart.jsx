@@ -8,7 +8,7 @@ const QuestionChart = ({ data }) => {
     <Flex w={"full"} flexDirection="column" rounded={"lg"} p={4} m={0}>
       {questions.map((question, index) => {
         const title = question.question;
-        const colors = ["#FF0000", "#00FF00", "#0000FF"];
+        //const colors = ["#FF0000", "#00FF00", "#0000FF"];
         const answerCounts = data.reduce((counts, item) => {
           const response = item.responses[index];
           const answerKey = Object.keys(response)[0];
@@ -17,8 +17,19 @@ const QuestionChart = ({ data }) => {
           return counts;
         }, {});
 
+        var barColor;
+
         const chartData = Object.keys(answerCounts).map((key, index) => {
           const value = answerCounts[key];
+          if(key === 'verde'){
+            barColor = "#00FF00";
+          }
+          if(key === 'rojo'){
+            barColor = "#FF0000";
+          }
+          if(key === 'azul'){
+            barColor = "#0000FF";
+          }
           return {
             name: key,
             value,
@@ -45,7 +56,7 @@ const QuestionChart = ({ data }) => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#8884d8" />
+              <Bar dataKey="value" fill={barColor} />
             </BarChart>
           </Flex>
         );
