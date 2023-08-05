@@ -55,7 +55,7 @@ const Markers = ({ selectedQuestion }) => {
             position={[marker.ubication.lat, marker.ubication.long]}
             icon={
               new L.Icon({
-                iconUrl: 'src/assets/icons/' + color + '.svg',
+                iconUrl: '/src/assets/icons/' + color + '.svg',
                 iconSize: [40, 46],
                 iconAnchor: [14, 12],
                 popupAnchor: [6, -8],
