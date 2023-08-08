@@ -23,5 +23,30 @@ Con el fin de desplegar la aplicación de manera local es necesario seguir los s
 
 ### 1. Configuración en Supabase
 
-* Guiarse en la siguiente documentación de Supabase: 
+* Guiarse en la siguiente documentación de Supabase: [Supabase documentation](supabase.md).
+
+### 2. Despliegue del proyecto en local
+
+1. Clonar este repo
+ ```sh
+git clone https://github.com/JosafatJimenezB/admin-encuesta.git
+```
+2. En la carpeta raíz del proyecto ejecutar:
+```sh
+npm install
+```
+3. Crear un archivo .env con las siguientes variables de entorno cuyo valor es obtenido de acuerdo a la [documentación de Supabase](supabase.md)
+
+* Ejemplo:
+```sh
+VITE_PUBLIC_SUPABASE_URL={{url}}}
+
+VITE_PUBLIC_ANON_KEY={{anon-key}}
+
+VITE_PUBLIC_DATA_ALL={{public-data}}
+```
+4. Desplegar el proyecto con el siguiente comando:
+ ```sh
+npm run dev
+```
 
