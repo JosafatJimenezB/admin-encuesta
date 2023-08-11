@@ -1,36 +1,71 @@
-# Multiple authentication on Supabase using React
+# Admin-encuesta
 
-## Supabase - Set Up a Project and Profile table
+App frontend para llevar a cabo la administración de los datos recabados por las encuentas realizadas a los usuarios los cuales se muestran a modo de gráficos y por zonas por medio de un mapa.
 
-1. Login to [Login - Supabase](https://supabase.com/)
-2. Create a new project and fill the fields
-3. Go to SQL Editor and select 'User Management Starter' template
-4. Remove realtime block and storage block of the template
-5. On profiles table: 
-    - Remove the following columns 'avatar_url' and 'website' and rename 'username' column to 'full_name'
-    - Remove unique constraint applied on 'username' column
-6. Run the script and the table 'profiles' will be created
+## Tecnologías aplicadas
 
-## Supabase - Project API Keys
+Las siguientes tecnologías fueron empleadas para construir la aplicación:
 
-1. Sign In on Supabase
-2. Go to settings option on sidebar
-3. Select API option on project settings block
-4. Copy 'anon public' and 'URL'
+* React
+* Javascript
+* HTML
+* JSON
+* Supabase
 
-## Supabase - Set Up Email Auth
+## Requisitos previos
 
-1. Sign In on Supabase
-2. Go to authentication option on sidebar
-3. On Email Auth block, disabled `Double confirm email changes` and `Enable email confirmations`
+1. Instalar NodeJS y npm: https://nodejs.org/es/download
+2. Instalar yarn: https://nodejs.org/es/download
 
-## Supabase - Set Up Google Provider
+## Despliegue
 
-- [Authenticacion with Google](https://supabase.com/docs/guides/auth/auth-google)
+Con el fin de desplegar la aplicación de manera local es necesario seguir los siguientes pasos:
 
-## Development
+### 1. Configuración en Supabase
 
-1. Clone this repo to a directory and then run `npm install`
-2. Set-up your environment variables following the `.env.example` file. NOTE: The environment file must be named like: `.env`
-  - You can get the `SUPABASE_URL` and `ANON_KEY` following [Supabase - Project API Keys](#supabase-project-api-keys)
-3. Run `npm run dev` to start developing mode
+* Guiarse en la siguiente documentación de Supabase: [Supabase documentation](supabase.md).
+
+### 2. Despliegue del proyecto en local
+
+1. Clonar este repo
+ ```sh
+git clone https://github.com/JosafatJimenezB/admin-encuesta.git
+```
+2. En la carpeta raíz del proyecto ejecutar:
+```sh
+npm install
+```
+3. Crear un archivo .env con las siguientes variables de entorno cuyo valor es obtenido de acuerdo a la [documentación de Supabase](supabase.md)
+
+* Ejemplo:
+```sh
+VITE_PUBLIC_SUPABASE_URL={{url}}}
+
+VITE_PUBLIC_ANON_KEY={{anon-key}}
+
+VITE_PUBLIC_DATA_ALL={{public-data}}
+```
+4. Desplegar el proyecto con el siguiente comando:
+ ```sh
+npm run dev
+```
+
+## Login
+
+* Crearse una cuenta
+
+![Formulario de registro](assets/signin.png)
+
+* Hay 2 formas de iniciar sesión: por usuario y contraseña o por medio de "Magic clic" en el cual nos llegara un enlace a nuestro correo electrónico con el enlace para iniciar sesión:
+
+![inicio sesion](assets/inicio_sesion.png)
+
+## Administración de la app
+
+* Visualización de datos por estadísticas y gráficos:
+
+![estadisticas](assets/estadisticas.png)
+
+* Visualización de estadísticas por mapa:
+
+![mapa](assets/mapa.png)
