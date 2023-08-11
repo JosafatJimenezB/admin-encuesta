@@ -62,13 +62,13 @@ const Data = () => {
       "Fecha de creación",
       "Latitud",
       "Longitud",
-      "Pregunta 1",
-      "Pregunta 2",
-      "Pregunta 3",
-      "Pregunta 4",
-      "Pregunta 5",
-      "Pregunta 6",
-      "Pregunta 7",
+      "Es Usted...",
+      "Su negocio es",
+      "Si le ofrecieran algún crédito ¿Para que lo usaría?",
+      "Si puede conectarse via internet, ¿Qué dispositivo podría usar?",
+      "¿Usted usaría comercio electronico via una APP para vender su producto o servicio?",
+      "¿Usted cuenta con una terminal para el cobro con tarjeta de crédito?",
+      "¿Que tipo de capacitación le interesaría más para su negocio?",
     ]);
     return csvData;
   };
